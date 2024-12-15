@@ -6,3 +6,4 @@
 
 **/application-local.yaml
 /logs
+**/target
