@@ -16,7 +16,7 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
         //TODO 模拟登录逻辑
         ServerHttpRequest request = exchange.getRequest();
         HttpHeaders headers = request.getHeaders();
-        System.out.println("headers: " + headers);
+        System.out.println("这是目前exchange得到的headers: " + headers);
         //放行
         return chain.filter(exchange);
     }

@@ -30,7 +30,8 @@ spring:
           uri: lb://pay-service
           predicates:
             - Path=/pay-orders/**
-
+      default-filters:
+        - PrintAny
 hm:
   jwt:
     location: classpath:hmall.jks
