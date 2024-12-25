@@ -1,5 +1,6 @@
 package com.hmall.gateway.filters;
 
+import lombok.Data;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
@@ -8,8 +9,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Component
-public class PrintAnyGatewayFilterFactory extends AbstractGatewayFilterFactory {
+public class PrintAnyGatewayFilterFactory extends AbstractGatewayFilterFactory<PrintAnyGatewayFilterFactory.Config> {
+    public PrintAnyGatewayFilterFactory() {
+        super(Config.class);
+    }
+
     /*
     下面这种是比较友好的过滤器写法
     这里使用了 OrderedGatewayFilter 这个方法
@@ -17,10 +24,17 @@ public class PrintAnyGatewayFilterFactory extends AbstractGatewayFilterFactory {
     解决了匿名内部类不能继承 Ordered 接口的问题
         */
     @Override
-    public GatewayFilter apply(Object config) {
+    public GatewayFilter apply(Config config) {
         return new OrderedGatewayFilter(new GatewayFilter() {
             @Override
             public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+                String a = config.getA();
+                String b = config.getB();
+                String c = config.getC();
+                System.out.println("接下来进行配置读取测试");
+                System.out.println("a = " + a);
+                System.out.println("b = " + b);
+                System.out.println("c = " + c);
                 System.out.println("目前执行到了PrintAnyGatewayFilterFactory");
                 return chain.filter(exchange);
             }
@@ -39,5 +53,17 @@ public class PrintAnyGatewayFilterFactory extends AbstractGatewayFilterFactory {
                 return chain.filter(exchange);
             }
         };*/
+    }
+
+    @Override
+    public List<String> shortcutFieldOrder() {
+        return List.of("a", "b", "c");
+    }
+
+    @Data
+    public static class Config {
+        private String a;
+        private String b;
+        private String c;
     }
 }
