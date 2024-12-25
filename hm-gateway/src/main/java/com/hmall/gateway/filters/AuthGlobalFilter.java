@@ -52,9 +52,13 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             return response.setComplete();
         }
         // TODO 5.传递用户信息
-        System.out.println("这里拿到的userId = " + userId);
+        System.out.println("我是认证过滤器，现在我拿到的userId是：" + userId);
+        String userInfo = userId.toString();
+        ServerWebExchange ex = exchange.mutate()
+                .request(builder -> builder.header("user-info", userInfo))
+                .build();
         //6.放行
-        return chain.filter(exchange);
+        return chain.filter(ex);
     }
 
     private boolean isExclude(String path) {
