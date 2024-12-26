@@ -12,6 +12,7 @@ spring:
           - data-id: shared-jdbc.yaml
           - data-id: shared-log.yaml
           - data-id: shared-swagger.yaml
-  sentinel:
-    transport:
-      dashboard: ${sen.host}:${sen.port}
+    sentinel:
+      transport:
+        dashboard: ${sen.host}:${sen.port} # 这里是Sentinel控制台的地址
+      http-method-specify: true # 是否设置请求方式作为资源名称
