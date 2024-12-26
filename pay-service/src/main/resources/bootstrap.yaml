@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: pay-service # 微服务名称
+  profiles:
+    active: local # 这里同时指定了bootstrap和application都使用local版本的配置
+  cloud:
+    nacos:
+      server-addr: ${na.host}:${na.port}
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-jdbc.yaml
+          - data-id: shared-log.yaml
+          - data-id: shared-swagger.yaml
