@@ -12,3 +12,6 @@ spring:
           - data-id: shared-jdbc.yaml
           - data-id: shared-log.yaml
           - data-id: shared-swagger.yaml
+    sentinel:
+      transport:
+        dashboard: ${sen.host}:${sen.port}
