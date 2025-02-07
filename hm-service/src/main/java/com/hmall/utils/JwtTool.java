@@ -23,11 +23,11 @@ public class JwtTool {
     /**
      * 创建 access-token
      *
-     * @param userDTO 用户信息
+     * @param userId 用户信息
      * @return access-token
      */
     public String createToken(Long userId, Duration ttl) {
-        // 1.生成jws
+        // 1.生成jwt
         return JWT.create()
                 .setPayload("user", userId)
                 .setExpiresAt(new Date(System.currentTimeMillis() + ttl.toMillis()))

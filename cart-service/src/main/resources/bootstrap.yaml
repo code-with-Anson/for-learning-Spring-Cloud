@@ -12,6 +12,7 @@ spring:
           - data-id: shared-jdbc.yaml
           - data-id: shared-log.yaml
           - data-id: shared-swagger.yaml
+          - data-id: shared-seata.yaml # 共享seata配置
     sentinel:
       transport:
         dashboard: ${sen.host}:${sen.port} # 这里是Sentinel控制台的地址
