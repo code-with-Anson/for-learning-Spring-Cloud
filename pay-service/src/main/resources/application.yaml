@@ -1,2 +1,9 @@
 server:
   port: 8086
+spring:
+  rabbitmq:
+    host: ${rabbit.host}
+    port: ${rabbit.port}
+    virtual-host: ${rabbit.virtual-host}
+    username: ${rabbit.username}
+    password: ${rabbit.password}
